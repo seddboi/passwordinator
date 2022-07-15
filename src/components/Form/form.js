@@ -7,13 +7,8 @@ import {
 	TextField,
 	Checkbox,
 	Button,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle,
-	Alert,
 } from '@mui/material';
+import { Popup } from '../Popup/popup';
 
 export function Form() {
 	const [isOpen, setisOpen] = useState(false);
@@ -29,17 +24,22 @@ export function Form() {
 		setisOpen(true);
 
 		textInput.current.value = '';
-	};
-
-	const handleClickClose = () => {
-		setisOpen(false);
-
-		setCharacterEntry(!characterEntry);
 		setIsUppercase(false);
 		setIsLowercase(false);
 		setIsNumbers(false);
 		setIsSpecial(false);
 	};
+
+	const handleClickClose = () => {
+		setisOpen(false);
+		setCharacterEntry(null);
+	};
+
+	const popupMessage =
+		characterEntry === null ||
+		(!isUppercase && !isLowercase && !isNumbers && !isSpecial)
+			? 'Please completely fill out the options.'
+			: 'Your randomly generated password:';
 
 	return (
 		<Container>
@@ -109,17 +109,11 @@ export function Form() {
 						Go !
 					</Button>
 				</Container>
-				<Dialog open={isOpen}>
-					<DialogTitle>{'Your Randomly Generated Password'}</DialogTitle>
-					<DialogContent>
-						<DialogContentText>{'Booty hole crakc'}</DialogContentText>
-						<DialogActions>
-							<Button color="success" onClick={handleClickClose}>
-								Close
-							</Button>
-						</DialogActions>
-					</DialogContent>
-				</Dialog>
+				<Popup
+					handleClickClose={handleClickClose}
+					isOpen={isOpen}
+					title={popupMessage}
+				/>
 			</Box>
 		</Container>
 	);
