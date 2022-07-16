@@ -1,6 +1,6 @@
 export function usePasswordRandomizer(length, isUppercase, isLowercase, isNumbers, isSpecial) {
 	// prettier-ignore
-	var specialChars = ["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "`", "[", "]", "{", "}", "\\", ":", ";", "'", "\"", "<", ">", ",", ".", "/", "?"];
+	var specialChars = ["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "`", "[", "]", "{", "}", "\\", ":", ";", "<", ">", ",", ".", "/", "?"];
 	// prettier-ignore
 	var numberChars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 	// prettier-ignore
