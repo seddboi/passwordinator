@@ -9,6 +9,7 @@ import {
 	Button,
 } from '@mui/material';
 import { Popup } from '../Popup/popup';
+import { usePasswordRandomizer } from '../../hooks/usePasswordRandomizer';
 
 export function Form() {
 	const [isOpen, setisOpen] = useState(false);
@@ -40,6 +41,16 @@ export function Form() {
 		(!isUppercase && !isLowercase && !isNumbers && !isSpecial)
 			? 'Please completely fill out the options.'
 			: 'Your randomly generated password:';
+
+	const randomPass = usePasswordRandomizer(
+		characterEntry,
+		isUppercase,
+		isLowercase,
+		isNumbers,
+		isSpecial
+	);
+
+	console.log(randomPass);
 
 	return (
 		<Container>
