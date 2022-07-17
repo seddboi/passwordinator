@@ -8,12 +8,12 @@ import {
 	Button,
 } from '@mui/material';
 
-export function Popup({ handleClickClose, isOpen, title }) {
+export function Popup({ handleClickClose, isOpen, title, password }) {
 	return (
 		<Dialog open={isOpen}>
 			<DialogTitle>{title}</DialogTitle>
 			<DialogContent>
-				<DialogContentText>{'Booty hole crakc'}</DialogContentText>
+				<DialogContentText>{password}</DialogContentText>
 				<DialogActions>
 					<Button color="success" onClick={handleClickClose}>
 						Close

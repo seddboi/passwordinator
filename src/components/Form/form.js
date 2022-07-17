@@ -13,6 +13,7 @@ import { usePasswordRandomizer } from '../../hooks/usePasswordRandomizer';
 
 export function Form() {
 	const [isOpen, setisOpen] = useState(false);
+	const [password, setPassword] = useState(null);
 	const [characterEntry, setCharacterEntry] = useState(null);
 	const [isUppercase, setIsUppercase] = useState(false);
 	const [isLowercase, setIsLowercase] = useState(false);
@@ -21,8 +22,9 @@ export function Form() {
 
 	const textInput = React.useRef(null);
 
-	const handleClickOpen = () => {
+	const handleClickOpenCorrect = () => {
 		setisOpen(true);
+		setPassword(randomPass);
 
 		textInput.current.value = '';
 		setIsUppercase(false);
@@ -31,14 +33,19 @@ export function Form() {
 		setIsSpecial(false);
 	};
 
+	const handleClickOpenIncorrrect = () => {
+		setisOpen(true);
+		setPassword(null);
+	};
+
 	const handleClickClose = () => {
 		setisOpen(false);
 		setCharacterEntry(null);
 	};
 
-	const popupMessage =
+	const filledOutCorrectly =
 		characterEntry === null ||
-		(!isUppercase && !isLowercase && !isNumbers && !isSpecial)
+		(isUppercase === true && isLowercase === true && isNumbers === true && isSpecial === true)
 			? 'Please completely fill out the options.'
 			: 'Your randomly generated password:';
 
@@ -49,8 +56,6 @@ export function Form() {
 		isNumbers,
 		isSpecial
 	);
-
-	console.log(randomPass);
 
 	return (
 		<Container>
@@ -115,7 +120,11 @@ export function Form() {
 						className="go-button"
 						variant="contained"
 						color="success"
-						onClick={handleClickOpen}
+						onClick={
+							characterEntry === null || (!isUppercase && !isLowercase && !isNumbers && !isSpecial)
+								? handleClickOpenIncorrrect
+								: handleClickOpenCorrect
+						}
 					>
 						Go !
 					</Button>
@@ -123,7 +132,8 @@ export function Form() {
 				<Popup
 					handleClickClose={handleClickClose}
 					isOpen={isOpen}
-					title={popupMessage}
+					title={filledOutCorrectly}
+					password={password}
 				/>
 			</Box>
 		</Container>
