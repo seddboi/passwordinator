@@ -7,9 +7,11 @@ import {
 	TextField,
 	Checkbox,
 	Button,
+	Typography,
 } from '@mui/material';
 import { Popup } from '../Popup/popup';
 import { usePasswordRandomizer } from '../../hooks/usePasswordRandomizer';
+import '../Form/form.css';
 
 export function Form() {
 	const [isOpen, setisOpen] = useState(false);
@@ -61,57 +63,90 @@ export function Form() {
 		<Container>
 			<FormGroup>
 				<TextField
-					id="number-input"
+					className="number-input"
 					label="How many characters?"
 					type="number"
+					color="success"
 					inputRef={textInput}
 					onChange={(e) => {
 						setCharacterEntry(e.target.value);
 					}}
+					sx={{ mb: 3 }}
 				/>
 				<FormControlLabel
+					color="success"
 					control={
 						<Checkbox
+							className="checkbox"
+							color="success"
+							size="large"
 							onChange={() => {
 								setIsUppercase(!isUppercase);
 							}}
 							checked={isUppercase}
+							sx={{}}
 						/>
 					}
-					label="Uppercase Letters"
+					label={
+						<Typography className="checkbox" variant="button">
+							Uppercase Letters
+						</Typography>
+					}
+					sx={{ mb: 3 }}
 				/>
 				<FormControlLabel
 					control={
 						<Checkbox
+							color="success"
+							size="large"
 							onChange={() => {
 								setIsLowercase(!isLowercase);
 							}}
 							checked={isLowercase}
 						/>
 					}
-					label="Lowercase Letters"
+					label={
+						<Typography className="checkbox" variant="button">
+							Lowercase Letters
+						</Typography>
+					}
+					sx={{ mb: 3 }}
 				/>
 				<FormControlLabel
 					control={
 						<Checkbox
+							color="success"
+							size="large"
 							onChange={() => {
 								setIsNumbers(!isNumbers);
 							}}
 							checked={isNumbers}
 						/>
 					}
-					label="Numbers"
+					label={
+						<Typography className="checkbox" variant="button">
+							Numbers
+						</Typography>
+					}
+					sx={{ mb: 3 }}
 				/>
 				<FormControlLabel
 					control={
 						<Checkbox
+							color="success"
+							size="large"
 							onChange={() => {
 								setIsSpecial(!isSpecial);
 							}}
 							checked={isSpecial}
 						/>
 					}
-					label="Special Characters"
+					label={
+						<Typography className="checkbox" variant="button">
+							Special Characters
+						</Typography>
+					}
+					sx={{ mb: 3 }}
 				/>
 			</FormGroup>
 			<Box className="bottom-section">
@@ -120,6 +155,7 @@ export function Form() {
 						className="go-button"
 						variant="contained"
 						color="success"
+						size="large"
 						onClick={
 							characterEntry === null || (!isUppercase && !isLowercase && !isNumbers && !isSpecial)
 								? handleClickOpenIncorrrect
