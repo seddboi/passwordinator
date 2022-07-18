@@ -107,6 +107,7 @@ export function Form() {
 								setIsUppercase(!isUppercase);
 							}}
 							checked={isUppercase}
+							style={{ color: '#2e7d32' }}
 						/>
 					}
 					label={
@@ -125,6 +126,7 @@ export function Form() {
 								setIsLowercase(!isLowercase);
 							}}
 							checked={isLowercase}
+							style={{ color: '#2e7d32' }}
 						/>
 					}
 					label={
@@ -143,6 +145,7 @@ export function Form() {
 								setIsNumbers(!isNumbers);
 							}}
 							checked={isNumbers}
+							style={{ color: '#2e7d32' }}
 						/>
 					}
 					label={
@@ -161,6 +164,7 @@ export function Form() {
 								setIsSpecial(!isSpecial);
 							}}
 							checked={isSpecial}
+							style={{ color: '#2e7d32' }}
 						/>
 					}
 					label={
@@ -174,7 +178,7 @@ export function Form() {
 			<Box className="bottom-section">
 				<Container>
 					<Button
-						className="go-button"
+						className="gobutton"
 						variant="contained"
 						color="success"
 						size="large"
