@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
+import '../Popup/popup.css';
 
 export function Popup({ handleClickClose, isOpen, title, password }) {
 	const [isCopied, setIsCopied] = useState(false);
