@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/passwordinator/static/css/main.4fee279c.css",
-    "main.js": "/passwordinator/static/js/main.c5a874fb.js",
+    "main.js": "/passwordinator/static/js/main.893ca0ab.js",
     "index.html": "/passwordinator/index.html",
     "main.4fee279c.css.map": "/passwordinator/static/css/main.4fee279c.css.map",
-    "main.c5a874fb.js.map": "/passwordinator/static/js/main.c5a874fb.js.map"
+    "main.893ca0ab.js.map": "/passwordinator/static/js/main.893ca0ab.js.map"
   },
   "entrypoints": [
     "static/css/main.4fee279c.css",
-    "static/js/main.c5a874fb.js"
+    "static/js/main.893ca0ab.js"
   ]
 }
