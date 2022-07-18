@@ -24,10 +24,14 @@ export function Form() {
 
 	const textInput = React.useRef(null);
 
-	const handleClickOpenCorrect = () => {
+	const handleClickOpen = () => {
 		setisOpen(true);
 		setPassword(randomPass);
+	};
 
+	const handleClickClose = () => {
+		setisOpen(false);
+		setCharacterEntry(null);
 		textInput.current.value = '';
 		setIsUppercase(false);
 		setIsLowercase(false);
@@ -35,21 +39,39 @@ export function Form() {
 		setIsSpecial(false);
 	};
 
-	const handleClickOpenIncorrrect = () => {
-		setisOpen(true);
-		setPassword(null);
+	const popupSwitcher = () => {
+		if (characterEntry < 0) {
+			return (
+				<Popup
+					handleClickClose={handleClickClose}
+					isOpen={isOpen}
+					title="Please enter a non-negative length."
+					password={null}
+				/>
+			);
+		} else if (
+			characterEntry === null ||
+			(!isUppercase && !isLowercase && !isNumbers && !isSpecial)
+		) {
+			return (
+				<Popup
+					handleClickClose={handleClickClose}
+					isOpen={isOpen}
+					title="Please enter a length and select at least one option below."
+					password={null}
+				/>
+			);
+		} else {
+			return (
+				<Popup
+					handleClickClose={handleClickClose}
+					isOpen={isOpen}
+					title="Your new password:"
+					password={password}
+				/>
+			);
+		}
 	};
-
-	const handleClickClose = () => {
-		setisOpen(false);
-		setCharacterEntry(null);
-	};
-
-	const filledOutCorrectly =
-		characterEntry === null ||
-		(isUppercase === true && isLowercase === true && isNumbers === true && isSpecial === true)
-			? 'Please completely fill out the options.'
-			: 'Your randomly generated password:';
 
 	const randomPass = usePasswordRandomizer(
 		characterEntry,
@@ -66,10 +88,11 @@ export function Form() {
 					className="number-input"
 					label="How many characters?"
 					type="number"
+					InputProps={{ inputProps: { min: 0 } }}
 					color="success"
 					inputRef={textInput}
 					onChange={(e) => {
-						setCharacterEntry(e.target.value);
+						setCharacterEntry(parseInt(e.target.value));
 					}}
 					sx={{ mb: 3 }}
 				/>
@@ -84,7 +107,6 @@ export function Form() {
 								setIsUppercase(!isUppercase);
 							}}
 							checked={isUppercase}
-							sx={{}}
 						/>
 					}
 					label={
@@ -156,21 +178,12 @@ export function Form() {
 						variant="contained"
 						color="success"
 						size="large"
-						onClick={
-							characterEntry === null || (!isUppercase && !isLowercase && !isNumbers && !isSpecial)
-								? handleClickOpenIncorrrect
-								: handleClickOpenCorrect
-						}
+						onClick={handleClickOpen}
 					>
 						Go !
 					</Button>
 				</Container>
-				<Popup
-					handleClickClose={handleClickClose}
-					isOpen={isOpen}
-					title={filledOutCorrectly}
-					password={password}
-				/>
+				{popupSwitcher()}
 			</Box>
 		</Container>
 	);

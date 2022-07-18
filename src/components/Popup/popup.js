@@ -44,15 +44,22 @@ export function Popup({ handleClickClose, isOpen, title, password }) {
 
 	const iconSwitcher = isCopied ? <CheckIcon /> : <ContentCopyIcon />;
 
+	const copyButtonHider =
+		password === null ? (
+			<div></div>
+		) : (
+			<Button color="primary" onClick={copyPassword}>
+				{iconSwitcher}
+			</Button>
+		);
+
 	return (
 		<Dialog open={isOpen} fullWidth>
-			<DialogTitle>{title}</DialogTitle>
+			<DialogTitle sx={{ color: '#2e7d32' }}>{title}</DialogTitle>
 			<DialogContent>
 				<DialogContentText>{passwordContainer}</DialogContentText>
 				<DialogActions>
-					<Button color="primary" onClick={copyPassword}>
-						{iconSwitcher}
-					</Button>
+					{copyButtonHider}
 					<Button
 						color="success"
 						onClick={() => {
